@@ -1,13 +1,19 @@
-const express = require('expess');
-const router = express.router();
+const express = require("express");
+const path = require("path");
+const router = express.Router();
+const adminController = require("../controllers/admin.controller");
 
-router.post('/item/:id', (req, res)=>{
-    const {id} = req.params;
-    res.send(`esta seguro?: ${id}`);
-})
+router.delete("/item/:id", (req, res) => {
+  const { id } = req.params;
 
-router.delete('/item/:id', (req, res)=>{
+  res.send(`Usted quiere eliminar el item: ${id}`);
+});
 
-})
+router.get("/", adminController.admin);
+router.get("/create", adminController.create);
+router.post("/create", adminController.create);
+router.get("/edit/:id", adminController.edit);
+router.put("/edit/:id", adminController.edit);
+router.delete("/delete/:id", adminController.delete);
 
 module.exports = router;
